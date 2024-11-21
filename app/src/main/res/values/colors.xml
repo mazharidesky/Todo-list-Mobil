@@ -2,7 +2,10 @@
 <resources>
     <color name="completed_task">#4CAF50</color>
     <color name="pending_task">#F44336</color>
-    <color name="taskCheckBox">#F44336</color>
+    <color name="botton_main">#FFDF00</color>
     <color name="black">#FF000000</color>
+    <color name="primary_color">#2196F3</color>
+    <color name="secondary_color">#4CAF50</color>
+    <color name="tertiary_color">#FF9800</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

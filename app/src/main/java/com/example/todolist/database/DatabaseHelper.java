@@ -13,6 +13,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_TASKS = "tasks";
 
+    private static final String COLUMN_DATE = "date";
+    private static final String COLUMN_TIME = "time";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_TITLE = "title";
     private static final String COLUMN_DESCRIPTION = "description";
@@ -28,7 +30,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_TITLE + " TEXT,"
                 + COLUMN_DESCRIPTION + " TEXT,"
-                + COLUMN_COMPLETED + " INTEGER)";
+                + COLUMN_COMPLETED + " INTEGER,"
+                + COLUMN_DATE + " TEXT,"
+                + COLUMN_TIME + " TEXT)";
         db.execSQL(createTable);
     }
 
@@ -134,4 +138,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_TASKS, COLUMN_ID + "=?", new String[]{String.valueOf(id)});
         db.close();
     }
+
+
 }

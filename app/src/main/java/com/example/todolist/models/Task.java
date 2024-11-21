@@ -5,6 +5,8 @@ public class Task {
     private String title;
     private String description;
     private boolean isCompleted;
+    private String date;
+    private String time;
 
     public Task(int id, String title) {
         this.id = id;
@@ -25,4 +27,10 @@ public class Task {
 
     public boolean isCompleted() { return isCompleted; }
     public void setCompleted(boolean completed) { isCompleted = completed; }
+
+    // Tambahkan getter dan setter
+    public String getDate() { return date; }
+    public void setDate(String date) { this.date = date; }
+    public String getTime() { return time; }
+    public void setTime(String time) { this.time = time; }
 }
