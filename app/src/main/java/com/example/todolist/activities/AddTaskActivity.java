@@ -43,7 +43,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Add New Task");
+            getSupportActionBar().setTitle("ADD NEW TASK");
         }
     }
 

@@ -24,7 +24,7 @@ public class TaskListActivity extends AppCompatActivity {
         // Set up action bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Task List");
+            getSupportActionBar().setTitle("TASK LIST");
         }
         // Initialize RecyclerView
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);

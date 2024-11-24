@@ -4,38 +4,46 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/background"
+    >
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusTopEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/taskInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Task Title"/>
+            android:inputType="textCapWords"
+            android:hint="Task Title"
+            android:fontFamily="@font/montserrat_medium"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusTopEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/taskDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Task Description"
-            android:inputType="textMultiLine"
-            android:minLines="3"/>
+            android:inputType="textCapWords"
+            android:minLines="3"
+            android:fontFamily="@font/montserrat_medium"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusTopEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dateInput"
@@ -43,13 +51,15 @@
             android:layout_height="wrap_content"
             android:hint="Select Date"
             android:focusable="false"
+            android:fontFamily="@font/montserrat_medium"
             android:drawableEnd="@android:drawable/ic_menu_my_calendar"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusTopEnd="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/timeInput"
@@ -57,6 +67,7 @@
             android:layout_height="wrap_content"
             android:hint="Select Time"
             android:focusable="false"
+            android:fontFamily="@font/montserrat_medium"
             android:drawableEnd="@android:drawable/ic_menu_recent_history"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,6 +77,7 @@
         android:layout_height="wrap_content"
         android:text="Save Task"
         android:padding="12dp"
+        android:fontFamily="@font/montserrat_medium"
         app:backgroundTint="@color/primary_color"
         app:cornerRadius="20dp"/>
 

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/background">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/statisticsCard"
@@ -26,12 +27,14 @@
                 android:text="Statistics"
                 android:textStyle="bold"
                 android:textSize="18sp"
+                android:fontFamily="@font/montserrat_medium"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/completedCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Completed Tasks: 0"
                 android:layout_marginBottom="4dp"/>
 
@@ -39,6 +42,7 @@
                 android:id="@+id/pendingCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Pending Tasks: 0"/>
 
         </LinearLayout>
@@ -54,24 +58,30 @@
 
         <RadioButton
             android:id="@+id/radioAll"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#f9f9f9"
             android:text="All"
             android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radioCompleted"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#f9f9f9"
             android:text="Completed"/>
 
         <RadioButton
             android:id="@+id/radioPending"
             android:layout_width="0dp"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#f9f9f9"
             android:text="Pending"/>
 
     </RadioGroup>
@@ -79,6 +89,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/filteredTasksRecyclerView"
         android:layout_width="match_parent"
+        android:fontFamily="@font/montserrat_medium"
         android:layout_height="match_parent"
         android:clipToPadding="false"/>
 

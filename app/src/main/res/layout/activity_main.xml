@@ -5,21 +5,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+
     android:gravity="center">
 
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:src="@drawable/lala"
+        android:layout_gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="Let's Go To Add Your Activity"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="32dp"/>
+        android:textAlignment="center"
+        android:textColor="#293F7D"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAddTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add New Task"
+        android:fontFamily="@font/montserrat_semibold"
         android:layout_marginBottom="16dp"
         app:cornerRadius="28dp"
         android:padding="12dp"
@@ -31,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="View Tasks"
+        android:fontFamily="@font/montserrat_semibold"
         android:layout_marginBottom="16dp"
         app:cornerRadius="28dp"
         android:padding="12dp"
@@ -42,6 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Task Statistics"
+        android:fontFamily="@font/montserrat_semibold"
         app:cornerRadius="28dp"
         android:padding="12dp"
         android:textSize="16sp"
