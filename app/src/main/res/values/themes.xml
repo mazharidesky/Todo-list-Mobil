@@ -6,4 +6,37 @@
     </style>
 
     <style name="Theme.ToDoList" parent="Base.Theme.ToDoList" />
+    <style name="TaskCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:buttonTint">@color/primary_color</item>
+    </style>
+    <!-- Add these to your existing styles.xml -->
+    <style name="StatisticsCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="contentPadding">20dp</item>
+        <item name="cardBackgroundColor">@color/card_background</item>
+    </style>
+
+    <style name="StatisticsNumber">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="StatisticsLabel">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="FilterTabs" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextAppearance">@style/TabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/primary_color</item>
+        <item name="tabIndicatorColor">@color/primary_color</item>
+        <item name="tabTextColor">@color/text_secondary</item>
+    </style>
+
+    <style name="TabTextAppearance" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

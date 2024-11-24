@@ -14,9 +14,9 @@ import com.example.todolist.models.Task;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
-    private final List<Task> taskList;
-    private final Context context;
-    private final TaskAdapterListener listener;
+    private List<Task> taskList;
+    private Context context;
+    private TaskAdapterListener listener;
 
     public interface TaskAdapterListener {
         void onTaskStatusChanged(Task task);
@@ -44,10 +44,25 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.taskDescription.setText(task.getDescription());
         holder.taskCheckBox.setChecked(task.isCompleted());
 
-        // Change text color based on completion status
+        // Set date and time
+        if (task.getDate() != null && !task.getDate().isEmpty()) {
+            holder.taskDate.setVisibility(View.VISIBLE);
+            holder.taskDate.setText(task.getDate());
+        } else {
+            holder.taskDate.setVisibility(View.GONE);
+        }
+
+        if (task.getTime() != null && !task.getTime().isEmpty()) {
+            holder.taskTime.setVisibility(View.VISIBLE);
+            holder.taskTime.setText(task.getTime());
+        } else {
+            holder.taskTime.setVisibility(View.GONE);
+        }
+
+        // Change text appearance based on completion status
         int textColor = task.isCompleted() ?
-                context.getResources().getColor(R.color.completed_task) :
-                context.getResources().getColor(R.color.pending_task);
+                context.getResources().getColor(R.color.text_secondary) :
+                context.getResources().getColor(R.color.text_primary);
         holder.taskTitle.setTextColor(textColor);
 
         holder.taskCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -55,6 +70,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             if (listener != null) {
                 listener.onTaskStatusChanged(task);
             }
+            // Update text appearance immediately after status change
+            holder.taskTitle.setTextColor(isChecked ?
+                    context.getResources().getColor(R.color.text_secondary) :
+                    context.getResources().getColor(R.color.text_primary));
         });
 
         holder.deleteButton.setOnClickListener(v -> {
@@ -73,6 +92,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         CheckBox taskCheckBox;
         TextView taskTitle;
         TextView taskDescription;
+        TextView taskDate;
+        TextView taskTime;
         ImageButton deleteButton;
 
         TaskViewHolder(View itemView) {
@@ -80,6 +101,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             taskCheckBox = itemView.findViewById(R.id.taskCheckBox);
             taskTitle = itemView.findViewById(R.id.taskTitle);
             taskDescription = itemView.findViewById(R.id.taskDescription);
+            taskDate = itemView.findViewById(R.id.taskDate);
+            taskTime = itemView.findViewById(R.id.taskTime);
             deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }

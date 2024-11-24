@@ -1,62 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
+    android:background="@color/background_color">
 
-    android:gravity="center">
-
-    <ImageView
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:src="@drawable/lala"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Let's Go To Add Your Activity"
-        android:textAlignment="center"
-        android:textColor="#293F7D"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAddTask"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add New Task"
-        android:fontFamily="@font/montserrat_semibold"
-        android:layout_marginBottom="16dp"
-        app:cornerRadius="28dp"
-        android:padding="12dp"
-        android:textSize="16sp"
-        app:backgroundTint="@color/primary_color"/>
+        android:layout_height="match_parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnViewTasks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Tasks"
-        android:fontFamily="@font/montserrat_semibold"
-        android:layout_marginBottom="16dp"
-        app:cornerRadius="28dp"
-        android:padding="12dp"
-        android:textSize="16sp"
-        app:backgroundTint="@color/secondary_color"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnFilterTasks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Task Statistics"
-        android:fontFamily="@font/montserrat_semibold"
-        app:cornerRadius="28dp"
-        android:padding="12dp"
-        android:textSize="16sp"
-        app:backgroundTint="@color/tertiary_color"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp">
 
-</LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/lala"
+                    android:scaleType="centerCrop"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:text="Let's Get Organized!"
+                android:textAlignment="center"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="32sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:text="Create and manage your daily tasks with ease"
+                android:textAlignment="center"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="16sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:clipToPadding="false"
+                android:padding="8dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddTask"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:text="Create New Task"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:layout_marginBottom="16dp"
+                    app:cornerRadius="16dp"
+                    android:textSize="16sp"
+                    app:elevation="4dp"
+                    app:icon="@android:drawable/ic_input_add"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:backgroundTint="@color/primary_color"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnViewTasks"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:text="View All Tasks"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:layout_marginBottom="16dp"
+                    app:cornerRadius="16dp"
+                    android:textSize="16sp"
+                    app:elevation="4dp"
+                    app:icon="@android:drawable/ic_menu_agenda"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="@color/secondary_color"
+                    android:textColor="@color/secondary_color"
+                    app:iconTint="@color/secondary_color"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFilterTasks"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:text="Task Statistics"
+                    android:fontFamily="@font/montserrat_semibold"
+                    app:cornerRadius="16dp"
+                    android:textSize="16sp"
+                    app:elevation="4dp"
+                    app:icon="@android:drawable/ic_menu_recent_history"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="@color/tertiary_color"
+                    android:textColor="@color/tertiary_color"
+                    app:iconTint="@color/tertiary_color"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

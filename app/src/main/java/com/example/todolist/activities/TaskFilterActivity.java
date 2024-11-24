@@ -1,18 +1,15 @@
 package com.example.todolist.activities;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.todolist.R;
 import com.example.todolist.adapters.TaskAdapter;
 import com.example.todolist.database.DatabaseHelper;
 import com.example.todolist.models.Task;
+import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 public class TaskFilterActivity extends AppCompatActivity {
@@ -22,9 +19,8 @@ public class TaskFilterActivity extends AppCompatActivity {
     private List<Task> taskList;
     private TextView completedCount;
     private TextView pendingCount;
-    private CardView statisticsCard;
+    private Boolean currentFilter = null;
 
-    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,79 +29,121 @@ public class TaskFilterActivity extends AppCompatActivity {
         // Set up action bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("TASK STATISTICS");
+            getSupportActionBar().setTitle("Task Overview");
         }
 
-        // Initialize views
-        completedCount = findViewById(R.id.completedCount);
-        pendingCount = findViewById(R.id.pendingCount);
-        statisticsCard = findViewById(R.id.statisticsCard);
-        tasksRecyclerView = findViewById(R.id.filteredTasksRecyclerView);
-        tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        RadioGroup filterGroup = findViewById(R.id.filterGroup);
-
-        // Initialize database
-        db = new DatabaseHelper(this);
-
-        // Set up statistics card
-        statisticsCard.setCardElevation(8f);
-        statisticsCard.setRadius(16f);
-
-        // Set up radio group listener
-        filterGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.radioAll) {
-                loadTasks(null);
-            } else if (checkedId == R.id.radioCompleted) {
-                loadTasks(true);
-            } else if (checkedId == R.id.radioPending) {
-                loadTasks(false);
-            }
-        });
+        initializeViews();
+        setupTabLayout();
 
         // Initial load
         updateStatistics();
         loadTasks(null);
     }
 
+    private void initializeViews() {
+        // Initialize views
+        completedCount = findViewById(R.id.completedCount);
+        pendingCount = findViewById(R.id.pendingCount);
+        tasksRecyclerView = findViewById(R.id.filteredTasksRecyclerView);
+        tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Initialize database
+        db = new DatabaseHelper(this);
+    }
+
+    private void setupTabLayout() {
+        TabLayout filterTabs = findViewById(R.id.filterTabs);
+        filterTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        currentFilter = null;
+                        loadTasks(null);  // All tasks
+                        break;
+                    case 1:
+                        currentFilter = true;
+                        loadTasks(true);  // Completed tasks
+                        break;
+                    case 2:
+                        currentFilter = false;
+                        loadTasks(false); // Pending tasks
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
+    }
+
     private void loadTasks(Boolean isCompleted) {
+        currentFilter = isCompleted;
         taskList = db.getFilteredTasks(isCompleted);
+        setupAdapter();
+    }
+
+    private void setupAdapter() {
         taskAdapter = new TaskAdapter(this, taskList, new TaskAdapter.TaskAdapterListener() {
             @Override
             public void onTaskStatusChanged(Task task) {
                 db.updateTask(task);
                 updateStatistics();
+
+                // Jika dalam mode filter, refresh list sesuai filter
+                if (currentFilter != null && task.isCompleted() != currentFilter) {
+                    taskList.remove(task);
+                    taskAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
             public void onTaskDeleted(Task task, int position) {
-                db.deleteTask(task.getId());
-                taskList.remove(position);
-                taskAdapter.notifyItemRemoved(position);
-                updateStatistics();
+                try {
+                    // Hapus dari database
+                    db.deleteTask(task.getId());
+
+                    // Hapus dari list jika masih ada
+                    if (position < taskList.size()) {
+                        taskList.remove(position);
+                        taskAdapter.notifyItemRemoved(position);
+                        // Notify range changed untuk mencegah crash
+                        taskAdapter.notifyItemRangeChanged(position, taskList.size());
+                    }
+
+                    // Update statistik
+                    updateStatistics();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // Jika terjadi error, refresh seluruh list
+                    loadTasks(currentFilter);
+                }
             }
         });
         tasksRecyclerView.setAdapter(taskAdapter);
     }
 
     private void updateStatistics() {
-        int completed = db.getTaskCount(true);
-        int pending = db.getTaskCount(false);
+        try {
+            int completed = db.getTaskCount(true);
+            int pending = db.getTaskCount(false);
 
-        // Update statistics text
-        completedCount.setText(String.format("Completed Tasks: %d", completed));
-        pendingCount.setText(String.format("Pending Tasks: %d", pending));
-
-        // Update colors based on counts
-        completedCount.setTextColor(completed > 0 ? Color.rgb(76, 175, 80) : Color.GRAY);
-        pendingCount.setTextColor(pending > 0 ? Color.rgb(244, 67, 54) : Color.GRAY);
+            // Update statistics numbers
+            completedCount.setText(String.valueOf(completed));
+            pendingCount.setText(String.valueOf(pending));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         updateStatistics();
-        loadTasks(null);
+        loadTasks(currentFilter); // Gunakan filter yang sedang aktif
     }
 
     @Override

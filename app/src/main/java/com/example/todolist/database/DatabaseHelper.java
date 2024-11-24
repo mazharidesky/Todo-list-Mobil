@@ -1,5 +1,6 @@
 package com.example.todolist.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "TodoList.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String TABLE_TASKS = "tasks";
 
     private static final String COLUMN_DATE = "date";
@@ -42,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Method untuk menambah task
+    // Update method addTask
     public long addTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -50,13 +51,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_TITLE, task.getTitle());
         values.put(COLUMN_DESCRIPTION, task.getDescription());
         values.put(COLUMN_COMPLETED, task.isCompleted() ? 1 : 0);
+        values.put(COLUMN_DATE, task.getDate());     // Tambahkan ini
+        values.put(COLUMN_TIME, task.getTime());     // Tambahkan ini
 
         long id = db.insert(TABLE_TASKS, null, values);
         db.close();
         return id;
     }
 
-    // Method untuk mengambil semua task
+    // Update method getAllTasks
     public ArrayList<Task> getAllTasks() {
         ArrayList<Task> taskList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + TABLE_TASKS;
@@ -71,6 +74,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 );
                 task.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
                 task.setCompleted(cursor.getInt(cursor.getColumnIndex(COLUMN_COMPLETED)) == 1);
+                task.setDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));      // Tambahkan ini
+                task.setTime(cursor.getString(cursor.getColumnIndex(COLUMN_TIME)));      // Tambahkan ini
                 taskList.add(task);
             } while (cursor.moveToNext());
         }
@@ -79,7 +84,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return taskList;
     }
 
-    // Method untuk mengambil task berdasarkan filter
+    // Update method getFilteredTasks
+    @SuppressLint("Range")
     public ArrayList<Task> getFilteredTasks(Boolean isCompleted) {
         ArrayList<Task> taskList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + TABLE_TASKS;
@@ -98,6 +104,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 );
                 task.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
                 task.setCompleted(cursor.getInt(cursor.getColumnIndex(COLUMN_COMPLETED)) == 1);
+                task.setDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));      // Tambahkan ini
+                task.setTime(cursor.getString(cursor.getColumnIndex(COLUMN_TIME)));      // Tambahkan ini
                 taskList.add(task);
             } while (cursor.moveToNext());
         }
@@ -118,8 +126,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return count;
     }
-
-    // Method untuk update task
+    // Method untuk hapus task
+    public void deleteTask(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TASKS, COLUMN_ID + "=?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+    // Update method updateTask
     public int updateTask(Task task) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -127,17 +140,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_TITLE, task.getTitle());
         values.put(COLUMN_DESCRIPTION, task.getDescription());
         values.put(COLUMN_COMPLETED, task.isCompleted() ? 1 : 0);
+        values.put(COLUMN_DATE, task.getDate());     // Tambahkan ini
+        values.put(COLUMN_TIME, task.getTime());     // Tambahkan ini
 
         return db.update(TABLE_TASKS, values, COLUMN_ID + "=?",
                 new String[]{String.valueOf(task.getId())});
     }
-
-    // Method untuk hapus task
-    public void deleteTask(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TASKS, COLUMN_ID + "=?", new String[]{String.valueOf(id)});
-        db.close();
-    }
-
-
 }
+
