@@ -29,7 +29,7 @@ public class TaskFilterActivity extends AppCompatActivity {
         // Set up action bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Task Overview");
+            getSupportActionBar().setTitle("Statistik ReminderIn");
         }
 
         initializeViews();

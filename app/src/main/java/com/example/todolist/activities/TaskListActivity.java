@@ -26,7 +26,7 @@ public class TaskListActivity extends AppCompatActivity {
         // Set up action bar
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Your Tasks");
+            getSupportActionBar().setTitle("ReminderIn Kamu");
         }
 
         // Initialize views

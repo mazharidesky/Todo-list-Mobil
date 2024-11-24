@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("TO DO LIST");
+        getSupportActionBar().setTitle("ReminderIn");
 
         Button addTaskBtn = findViewById(R.id.btnAddTask);
         Button viewTasksBtn = findViewById(R.id.btnViewTasks);

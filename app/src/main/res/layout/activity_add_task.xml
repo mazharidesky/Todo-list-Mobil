@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create New Task"
+            android:text="Buat Reminder Kamu"
             android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="@color/text_primary"
@@ -53,7 +53,7 @@
                         android:id="@+id/taskInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="What's your task?"
+                        android:hint="Judul Reminderin der"
                         android:inputType="textCapSentences"
                         android:fontFamily="@font/montserrat_medium"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -76,7 +76,7 @@
                         android:id="@+id/taskDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Add some details"
+                        android:hint="Berikan Detail Reminder"
                         android:inputType="textCapSentences|textMultiLine"
                         android:minLines="3"
                         android:gravity="top"
@@ -108,7 +108,7 @@
                             android:id="@+id/dateInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Date"
+                            android:hint="Tanggal"
                             android:focusable="false"
                             android:fontFamily="@font/montserrat_medium"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -132,7 +132,7 @@
                             android:id="@+id/timeInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Time"
+                            android:hint="Waktu"
                             android:focusable="false"
                             android:fontFamily="@font/montserrat_medium"/>
                     </com.google.android.material.textfield.TextInputLayout>
@@ -144,7 +144,7 @@
             android:id="@+id/saveButton"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:text="Create Task"
+            android:text="Buat Reminderin"
             android:textSize="16sp"
             android:fontFamily="@font/montserrat_bold"
             app:cornerRadius="16dp"

@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Task Overview"
+            android:text="Overview Reminder"
             android:textSize="28sp"
             android:textColor="@color/text_primary"
             android:fontFamily="@font/montserrat_bold"
@@ -39,7 +39,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Statistics"
+                    android:text="Statistik"
                     android:textSize="20sp"
                     android:textColor="@color/text_primary"
                     android:fontFamily="@font/montserrat_bold"
@@ -69,17 +69,17 @@
                                 android:id="@+id/completedCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/montserrat_bold"
                                 android:text="0"
-                                android:textSize="24sp"
                                 android:textColor="@color/success_dark"
-                                android:fontFamily="@font/montserrat_bold"/>
+                                android:textSize="24sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Completed"
-                                android:textColor="@color/success_dark"
-                                android:fontFamily="@font/montserrat_medium"/>
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="Selesai"
+                                android:textColor="@color/success_dark" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -110,7 +110,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Pending"
+                                android:text="Tertundua"
                                 android:textColor="@color/warning_dark"
                                 android:fontFamily="@font/montserrat_medium"/>
                         </LinearLayout>
@@ -140,17 +140,17 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="All"/>
+                    android:text="Semua"/>
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Completed"/>
+                    android:text="Selesai"/>
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"/>
+                    android:text="Tertunda"/>
 
             </com.google.android.material.tabs.TabLayout>
         </com.google.android.material.card.MaterialCardView>

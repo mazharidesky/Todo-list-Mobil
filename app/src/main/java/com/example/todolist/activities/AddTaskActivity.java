@@ -43,7 +43,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("ADD NEW TASK");
+            getSupportActionBar().setTitle("Tambah ReminderIn");
         }
     }
 
